@@ -5,15 +5,17 @@
 - Node
 - Yalc
 
-## Quick Start
+## Installation
 ```
 npm i vite-plugin-yalc
 ```
 
+## Usage
+To push your build into the store, simply do the following:
 ```ts
 # vite.config.ts
 
-import { pushDTS } from 'vite-plugin-yalc';
+import { runYalc } from 'vite-plugin-yalc';
 import path from 'path';
 import { defineConfig } from 'vite';
 
@@ -22,7 +24,6 @@ export default defineConfig(({ mode }) => {
 		base: './',
 		build: {
 			ssr: true,
-			sourcemap: mode !== 'production',
 			lib: {
 				entry: path.resolve(__dirname, 'src/index.ts'),
 				name: 'Yalc',
@@ -30,7 +31,38 @@ export default defineConfig(({ mode }) => {
 				fileName: format => `index.${format}.js`,
 			},
 		},
-		plugins: [pushDTS()],
+		plugins: [runYalc()],
+		resolve: {
+			alias: {
+				src: path.resolve(__dirname, '/src'),
+			},
+		},
+	};
+});
+
+```
+
+Or, to build types and then push your build into the store do the following:
+```ts
+# vite.config.ts
+
+import { runDts, runYalc } from 'vite-plugin-yalc';
+import path from 'path';
+import { defineConfig } from 'vite';
+
+export default defineConfig(({ mode }) => {
+	return {
+		base: './',
+		build: {
+			ssr: true,
+			lib: {
+				entry: path.resolve(__dirname, 'src/index.ts'),
+				name: 'Yalc',
+				formats: ['es', 'cjs'],
+				fileName: format => `index.${format}.js`,
+			},
+		},
+		plugins: [runDts(), runYalc()],
 		resolve: {
 			alias: {
 				src: path.resolve(__dirname, '/src'),
