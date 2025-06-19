@@ -7,17 +7,17 @@
 
 ## Installation
 ```
-npm i vite-plugin-yalc
+npm i vite-plugin-yalc -D
 ```
 
 ## Usage
-To push your build into the store, simply do the following:
+To push your build into the store, simply add the following:
 ```ts
-# vite.config.ts
+// vite.config.ts
 
-import { runYalc } from 'vite-plugin-yalc';
 import path from 'path';
 import { defineConfig } from 'vite';
+import { runYalc } from 'vite-plugin-yalc';
 
 export default defineConfig(({ mode }) => {
 	return {
@@ -44,11 +44,11 @@ export default defineConfig(({ mode }) => {
 Or, to build types and then push your build into the store do the following:
 
 ```ts
-# vite.config.ts
+// vite.config.ts
 
-import { runDts, runYalc } from 'vite-plugin-yalc';
 import path from 'path';
 import { defineConfig } from 'vite';
+import { runDts, runYalc } from 'vite-plugin-yalc';
 
 export default defineConfig(({ mode }) => {
 	return {
@@ -69,6 +69,7 @@ export default defineConfig(({ mode }) => {
 		},
 	};
 });
+
 
 ```
 
