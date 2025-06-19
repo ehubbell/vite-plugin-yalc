@@ -1,5 +1,5 @@
 # Overview
- A yalc plugin for Vite library projects.
+ A yalc plugin for Vite-based library projects.
 
 ## Prerequisites
 - Node

@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-yalc",
   "version": "0.0.0",
-  "description": "A yalc plugin for vite library projects.",
+  "description": "A yalc plugin for vite-based library projects.",
   "author": "Eric Hubbell<eric@erichubbell.com>",
   "license": "ISC",
   "main": "dist/index.cjs.js",
