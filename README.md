@@ -23,7 +23,6 @@ export default defineConfig(({ mode }) => {
 	return {
 		base: './',
 		build: {
-			ssr: true,
 			lib: {
 				entry: path.resolve(__dirname, 'src/index.ts'),
 				name: 'Yalc',
@@ -43,6 +42,7 @@ export default defineConfig(({ mode }) => {
 ```
 
 Or, to build types and then push your build into the store do the following:
+
 ```ts
 # vite.config.ts
 
@@ -54,7 +54,6 @@ export default defineConfig(({ mode }) => {
 	return {
 		base: './',
 		build: {
-			ssr: true,
 			lib: {
 				entry: path.resolve(__dirname, 'src/index.ts'),
 				name: 'Yalc',
