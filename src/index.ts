@@ -16,6 +16,22 @@ export const runYalc = (): any => {
 	};
 };
 
+export const runDtsYalc = (): any => {
+	return {
+		name: 'run-dts',
+		closeBundle: async () => {
+			return exec('dts-bundle-generator --config dts.config.ts', (response, error) => {
+				if (error) console.error(error);
+				if (response) console.log(response);
+				return exec('npx yalc push', (response, error) => {
+					if (error) console.error(error);
+					if (response) console.log(response);
+				});
+			});
+		},
+	};
+};
+
 export const runCommand = (props?: PluginProps): any => {
 	return {
 		name: 'run-command',
