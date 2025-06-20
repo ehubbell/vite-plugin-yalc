@@ -4,21 +4,9 @@ export type PluginProps = {
 	command?: string;
 };
 
-export const runYalc = (): any => {
+export const runCombined = (): any => {
 	return {
-		name: 'run-yalc',
-		closeBundle: async () => {
-			return exec('npx yalc push', (response, error) => {
-				if (error) console.error(error);
-				if (response) console.log(response);
-			});
-		},
-	};
-};
-
-export const runDtsYalc = (): any => {
-	return {
-		name: 'run-dts',
+		name: 'run-combined',
 		closeBundle: async () => {
 			return exec('dts-bundle-generator --config dts.config.ts', (response, error) => {
 				if (error) console.error(error);
@@ -32,11 +20,11 @@ export const runDtsYalc = (): any => {
 	};
 };
 
-export const runCommand = (props?: PluginProps): any => {
+export const runDts = (): any => {
 	return {
-		name: 'run-command',
+		name: 'run-dts',
 		closeBundle: async () => {
-			return exec(props?.command, (response, error) => {
+			return exec('dts-bundle-generator --config dts.config.ts', (response, error) => {
 				if (error) console.error(error);
 				if (response) console.log(response);
 			});
@@ -44,11 +32,11 @@ export const runCommand = (props?: PluginProps): any => {
 	};
 };
 
-export const runDts = (): any => {
+export const runYalc = (): any => {
 	return {
-		name: 'run-dts',
+		name: 'run-yalc',
 		closeBundle: async () => {
-			return exec('dts-bundle-generator --config dts.config.ts', (response, error) => {
+			return exec('npx yalc push', (response, error) => {
 				if (error) console.error(error);
 				if (response) console.log(response);
 			});
