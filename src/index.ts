@@ -4,6 +4,22 @@ export type PluginProps = {
 	command?: string;
 };
 
+export const runCommand = (command): any => {
+	return {
+		name: 'run-command',
+		closeBundle: async () => {
+			return exec(command, (response, error) => {
+				if (error) console.error(error);
+				if (response) console.log(response);
+				return exec('npx yalc push', (response, error) => {
+					if (error) console.error(error);
+					if (response) console.log(response);
+				});
+			});
+		},
+	};
+};
+
 export const runCombined = (): any => {
 	return {
 		name: 'run-combined',
