@@ -41,14 +41,14 @@ export default defineConfig(({ mode }) => {
 
 ```
 
-Or, to build types and then push your build into the store do the following:
+Or, to run a command abd then push your build into the store do the following:
 
 ```ts
 // vite.config.ts
 
 import path from 'path';
 import { defineConfig } from 'vite';
-import { runDts, runYalc } from 'vite-plugin-yalc';
+import { runCommand } from 'vite-plugin-yalc';
 
 export default defineConfig(({ mode }) => {
 	return {
@@ -61,7 +61,7 @@ export default defineConfig(({ mode }) => {
 				fileName: format => `index.${format}.js`,
 			},
 		},
-		plugins: [runDts(), runYalc()],
+		plugins: [runCommand('npm run build:ts')],
 		resolve: {
 			alias: {
 				src: path.resolve(__dirname, '/src'),

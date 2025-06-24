@@ -20,34 +20,6 @@ export const runCommand = (command): any => {
 	};
 };
 
-export const runCombined = (): any => {
-	return {
-		name: 'run-combined',
-		closeBundle: async () => {
-			return exec('dts-bundle-generator --config dts.config.ts', (response, error) => {
-				if (error) console.error(error);
-				if (response) console.log(response);
-				return exec('npx yalc push', (response, error) => {
-					if (error) console.error(error);
-					if (response) console.log(response);
-				});
-			});
-		},
-	};
-};
-
-export const runDts = (): any => {
-	return {
-		name: 'run-dts',
-		closeBundle: async () => {
-			return exec('dts-bundle-generator --config dts.config.ts', (response, error) => {
-				if (error) console.error(error);
-				if (response) console.log(response);
-			});
-		},
-	};
-};
-
 export const runYalc = (): any => {
 	return {
 		name: 'run-yalc',
