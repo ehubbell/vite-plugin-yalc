@@ -4,7 +4,7 @@ export type PluginProps = {
 	command?: string;
 };
 
-export const runCommand = (command): any => {
+export const runCommand = (command: string): any => {
 	return {
 		name: 'run-command',
 		closeBundle: async () => {

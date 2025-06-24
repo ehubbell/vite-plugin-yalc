@@ -1,4 +1,4 @@
-import { runDts, runYalc } from './src';
+import { runCommand } from './src';
 import path from 'path';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { defineConfig } from 'vite';
@@ -8,26 +8,24 @@ export default defineConfig(({ mode }) => {
 		base: './',
 		build: {
 			ssr: true,
-			sourcemap: mode !== 'production',
+			sourcemap: mode === 'development',
 			lib: {
 				entry: path.resolve(__dirname, 'src/index.ts'),
 				formats: ['es', 'cjs'],
 				name: 'Yalc',
-				fileName: (format, entryName) => `index.${format}.js`,
+				fileName: (format, entryName) => format === 'es' ? `index.mjs` : `index.cjs`,
 			},
 			rollupOptions: {
-				external: [
-					'node:child_process',
-				],
+				external: ['node:child_process'],
 				output: {
 					globals: {
-						childProcess: 'node:child_process'
+						childProcess: 'node:child_process',
 					},
 				},
 				plugins: [peerDepsExternal()],
 			},
 		},
-		plugins: [runDts(), runYalc()],
+		plugins: [runCommand('npm run build:ts')],
 		resolve: {
 			alias: {
 				src: path.resolve(__dirname, '/src'),
