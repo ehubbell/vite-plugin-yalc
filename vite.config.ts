@@ -7,13 +7,12 @@ export default defineConfig(({ mode }) => {
 	return {
 		base: './',
 		build: {
-			ssr: true,
 			sourcemap: mode === 'development',
 			lib: {
 				entry: path.resolve(__dirname, 'src/index.ts'),
 				formats: ['es', 'cjs'],
 				name: 'Yalc',
-				fileName: (format, entryName) => (format === 'es' ? `index.mjs` : `index.cjs`),
+				fileName: (format, entryName) => `${entryName}.${format}.js`,
 			},
 			rollupOptions: {
 				external: ['node:child_process'],

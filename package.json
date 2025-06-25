@@ -6,7 +6,7 @@
   "license": "ISC",
   "type": "module",
   "main": "dist/index.cjs",
-  "modules": "dist/index.mjs",
+  "modules": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
