@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => {
 				entry: path.resolve(__dirname, 'src/index.ts'),
 				formats: ['es', 'cjs'],
 				name: 'Yalc',
-				fileName: (format, entryName) => format === 'es' ? `index.mjs` : `index.cjs`,
+				fileName: (format, entryName) => (format === 'es' ? `index.mjs` : `index.cjs`),
 			},
 			rollupOptions: {
 				external: ['node:child_process'],
