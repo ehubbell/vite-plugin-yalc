@@ -16,11 +16,6 @@ export default defineConfig(({ mode }) => {
 			},
 			rollupOptions: {
 				external: ['node:child_process'],
-				output: {
-					globals: {
-						childProcess: 'node:child_process',
-					},
-				},
 				plugins: [peerDepsExternal()],
 			},
 		},

@@ -1,17 +1,13 @@
 import { exec } from 'node:child_process';
 
-export type PluginProps = {
-	command?: string;
-};
-
 export const runCommand = (command: string): any => {
 	return {
 		name: 'run-command',
-		closeBundle: async () => {
-			return await exec(command, async (response, error) => {
+		closeBundle: () => {
+			return exec(command, (response, error) => {
 				if (error) console.error(error);
 				if (response) console.log(response);
-				return await exec('npx yalc push', (response, error) => {
+				return exec('npx yalc push', (response, error) => {
 					if (error) console.error(error);
 					if (response) console.log(response);
 				});
@@ -23,8 +19,8 @@ export const runCommand = (command: string): any => {
 export const runYalc = (): any => {
 	return {
 		name: 'run-yalc',
-		closeBundle: async () => {
-			return await exec('npx yalc push', (response, error) => {
+		closeBundle: () => {
+			return exec('npx yalc push', (response, error) => {
 				if (error) console.error(error);
 				if (response) console.log(response);
 			});
