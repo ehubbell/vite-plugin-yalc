@@ -8,10 +8,10 @@ export const runCommand = (command: string): any => {
 	return {
 		name: 'run-command',
 		closeBundle: async () => {
-			return exec(command, (response, error) => {
+			return await exec(command, async (response, error) => {
 				if (error) console.error(error);
 				if (response) console.log(response);
-				return exec('npx yalc push', (response, error) => {
+				return await exec('npx yalc push', (response, error) => {
 					if (error) console.error(error);
 					if (response) console.log(response);
 				});
@@ -24,7 +24,7 @@ export const runYalc = (): any => {
 	return {
 		name: 'run-yalc',
 		closeBundle: async () => {
-			return exec('npx yalc push', (response, error) => {
+			return await exec('npx yalc push', (response, error) => {
 				if (error) console.error(error);
 				if (response) console.log(response);
 			});

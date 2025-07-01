@@ -41,7 +41,7 @@ export default defineConfig(({ mode }) => {
 
 ```
 
-Or, to run a command abd then push your build into the store do the following:
+Or, to run a command and then push your build into the store do the following:
 
 ```ts
 // vite.config.ts
