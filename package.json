@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-yalc",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "A yalc plugin for vite-based library projects.",
   "author": "Eric Hubbell<eric@erichubbell.com>",
   "license": "ISC",
