@@ -7,6 +7,7 @@ export default defineConfig(({ mode }) => {
 	return {
 		base: './',
 		build: {
+			ssr: true,
 			sourcemap: mode === 'development',
 			lib: {
 				entry: path.resolve(__dirname, 'src/index.ts'),
