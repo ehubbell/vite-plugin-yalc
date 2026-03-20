@@ -1,11 +1,11 @@
 import { execSync } from 'node:child_process';
 
-export const runCommand = (command, format = 'cjs') => ({
+export const runCommand = (command, format?: string) => ({
 	apply: 'build',
 	name: 'run-command',
 	writeBundle: outputOptions => {
 		try {
-			if (outputOptions.format !== format) return;
+			if (format && format !== outputOptions.format) return;
 			execSync(command, { stdio: 'inherit' });
 			execSync('npx yalc push', { stdio: 'inherit' });
 		} catch (error) {
@@ -14,12 +14,12 @@ export const runCommand = (command, format = 'cjs') => ({
 	},
 });
 
-export const runYalc = (format = 'cjs') => ({
+export const runYalc = (format?: string) => ({
 	apply: 'build',
 	name: 'run-yalc',
 	writeBundle(outputOptions) {
 		try {
-			if (outputOptions.format !== format) return;
+			if (format && format !== outputOptions.format) return;
 			execSync('npx yalc push', { stdio: 'inherit' });
 		} catch (error) {
 			console.error(error);
