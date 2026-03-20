@@ -1,32 +1,31 @@
-import { exec } from 'node:child_process';
+import { execSync } from 'node:child_process';
 
-export const runCommand = (command: string): any => {
-	return {
-		name: 'run-command',
-		closeBundle: () => {
-			return exec(command, (response, error) => {
-				if (error) console.error(error);
-				if (response) console.log(response);
-				return exec('npx yalc push', (response, error) => {
-					if (error) console.error(error);
-					if (response) console.log(response);
-				});
-			});
-		},
-	};
-};
+export const runCommand = (command, format = 'cjs') => ({
+	apply: 'build',
+	name: 'run-command',
+	writeBundle: outputOptions => {
+		try {
+			if (outputOptions.format !== format) return;
+			execSync(command, { stdio: 'inherit' });
+			execSync('npx yalc push', { stdio: 'inherit' });
+		} catch (error) {
+			console.error(error);
+		}
+	},
+});
 
-export const runYalc = (): any => {
-	return {
-		name: 'run-yalc',
-		closeBundle: () => {
-			return exec('npx yalc push', (response, error) => {
-				if (error) console.error(error);
-				if (response) console.log(response);
-			});
-		},
-	};
-};
+export const runYalc = (format = 'cjs') => ({
+	apply: 'build',
+	name: 'run-yalc',
+	writeBundle(outputOptions) {
+		try {
+			if (outputOptions.format !== format) return;
+			execSync('npx yalc push', { stdio: 'inherit' });
+		} catch (error) {
+			console.error(error);
+		}
+	},
+});
 
 // Docs
 // https://github.com/vitejs/vite/discussions/9217
