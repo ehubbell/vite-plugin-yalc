@@ -1,6 +1,6 @@
 import { execSync } from 'node:child_process';
 
-export const runCommand = (command, format?: string) => ({
+export const runCommand = ({ command = '', format = '' }) => ({
 	apply: 'build',
 	name: 'run-command',
 	writeBundle: outputOptions => {
@@ -14,7 +14,7 @@ export const runCommand = (command, format?: string) => ({
 	},
 });
 
-export const runYalc = (format?: string) => ({
+export const runYalc = ({ format = '' }) => ({
 	apply: 'build',
 	name: 'run-yalc',
 	writeBundle(outputOptions) {
